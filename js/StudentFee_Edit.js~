@@ -11,15 +11,16 @@ $(document).ready(function () {
             data: { SLN: SLN, FeeHead: FeeHead},
 		      dataType: "json",
             success: function(data) {
-            	// alert(FeeHead);
+            	 //var FeeHead = data[4];
+            	 //alert(FeeHead);
             	 $('#insert_form')[0].reset();            
             	 $('#AdmNO').val(data[0]); 
             	 $('#Name').val(data[1]);
             	 $('#StudentName').val(data[1]);
-            	 $('#Field').val(FeeHead);
-            	 $('#FieldName').val(FeeHead);
+            	 $('#Field').val(data[4]);
+            	 $('#FieldName').val(data[4]);
             	 $('#Amount').val(data[2]);
-            	 if ((FeeHead.localeCompare("TotalFee")) || (FeeHead.localeCompare("PrevDue"))) 
+            	 if ((FeeHead.localeCompare("TotalFee")) && (FeeHead.localeCompare("PrevDue"))) 
             	 {
             	 	$('#Receipt').val(data[3]);
             	 }            	

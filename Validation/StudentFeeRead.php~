@@ -28,7 +28,7 @@ if (isset($_POST["SLN"])) {
     $RowStudent = mysqli_num_rows($querySql);
     if($RowStudent > 0 ) {
     		$FetchRow = mysqli_fetch_assoc($querySql);
-    		$StudentDetails = array($FetchRow['AdmNO'], strtoupper($FetchRow['Name']), $FeeHead, $Receipt);
+    		$StudentDetails = array($FetchRow['AdmNO'], strtoupper($FetchRow['Name']), $FetchRow[$FeeHead], $Receipt, $FeeHead);
     			
     }
     else {

@@ -28,11 +28,11 @@ if (isset($_POST["SLN"])) {
     $RowStudent = mysqli_num_rows($querySql);
     if($RowStudent > 0 ) {
     		$FetchRow = mysqli_fetch_assoc($querySql);
-    		$StudentDetails = array($FetchRow['AdmNO'], strtoupper($FetchRow['Name']), $FetchRow[$FeeHead], $Receipt);
+    		$StudentDetails = array($FetchRow['AdmNO'], strtoupper($FetchRow['Name']), $FetchRow[$FeeHead], $Receipt, $FeeHead);
     			
     }
     else {
-    		 $StudentDetails = array($row['AdmNO'], strtoupper($row['Firstname']." ".$row['Lastname']), 0, $Receipt);     
+    		 $StudentDetails = array($row['AdmNO'], strtoupper($row['Firstname']." ".$row['Lastname']), 0, $Receipt, $FeeHead);     
        	}
     echo json_encode($StudentDetails);
 }
