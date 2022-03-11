@@ -1,0 +1,45 @@
+$(document).ready(function () {
+	$(document).on('click', 'a[data-role=Update]',function () {	
+		var SLN = $(this).data('id');
+		function removeCharacter(str){
+  			let tmp = str.split('');
+  			return tmp.slice(1).join('');
+		} 
+		$.ajax({
+            url: "Validation/SyllabusCover.php",
+            method: "POST",
+            data: { SLN: SLN
+            },
+		      dataType: "json",
+            success: function(data) {        	 
+					 var WeekFiled = 1 + parseInt(removeCharacter(data.Week));
+          	    var Week = 'Week - '.concat(WeekFiled);
+                $('#Week').val(Week);
+                $('#SDate').val(data.StartDate);
+                $('#EDate').val(data.EndDate);             
+                $('#SLN').val(data.SLN);
+                $('#myModal').modal('show');
+            }
+        });
+		});
+	$('#insert_form').on("submit", function(event) {													
+        event.preventDefault();
+        if ($('#Syllabus').val() == "") {
+            alert("% Syllabus Coverage Required");
+        }
+        else {
+            $.ajax({
+                url: "Validation/SyllabusCoverage.php",
+                method: "POST",
+                data: $('#insert_form').serialize(),
+                beforeSend: function() {
+                },              
+                success : function (data) {               	  
+						  $('#SyllabusCoverageDisplay').html(data);               
+                    $("#myModal .close").click();
+						}
+            });
+        } 
+	
+	});
+});
